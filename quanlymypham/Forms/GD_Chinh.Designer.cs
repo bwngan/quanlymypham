@@ -48,15 +48,20 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnHoadonban = new System.Windows.Forms.Button();
-            this.QuanlychungTransition = new System.Windows.Forms.Timer(this.components);
-            this.HoadonnhapTransition = new System.Windows.Forms.Timer(this.components);
-            this.HoadonbanTransition = new System.Windows.Forms.Timer(this.components);
             this.BaocaoContainer = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnBaocao = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.btnDangxuat = new System.Windows.Forms.Button();
+            this.QuanlychungTransition = new System.Windows.Forms.Timer(this.components);
+            this.HoadonnhapTransition = new System.Windows.Forms.Timer(this.components);
+            this.HoadonbanTransition = new System.Windows.Forms.Timer(this.components);
             this.SidebarTransition = new System.Windows.Forms.Timer(this.components);
-            this.button5 = new System.Windows.Forms.Button();
             this.BaocaoTransition = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnMucluc)).BeginInit();
@@ -65,6 +70,7 @@
             this.HoadonnhapContainer.SuspendLayout();
             this.HoadonbanContainer.SuspendLayout();
             this.BaocaoContainer.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -108,6 +114,7 @@
             this.Sidebar.Controls.Add(this.HoadonnhapContainer);
             this.Sidebar.Controls.Add(this.HoadonbanContainer);
             this.Sidebar.Controls.Add(this.BaocaoContainer);
+            this.Sidebar.Controls.Add(this.panel2);
             this.Sidebar.Location = new System.Drawing.Point(0, 37);
             this.Sidebar.Name = "Sidebar";
             this.Sidebar.Size = new System.Drawing.Size(252, 476);
@@ -137,7 +144,7 @@
             this.btnQuanlychung.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnQuanlychung.Location = new System.Drawing.Point(3, 3);
             this.btnQuanlychung.Name = "btnQuanlychung";
-            this.btnQuanlychung.Size = new System.Drawing.Size(210, 37);
+            this.btnQuanlychung.Size = new System.Drawing.Size(210, 47);
             this.btnQuanlychung.TabIndex = 2;
             this.btnQuanlychung.Text = "  Quản lý chung";
             this.btnQuanlychung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -153,7 +160,7 @@
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(3, 46);
+            this.button6.Location = new System.Drawing.Point(3, 56);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(186, 37);
             this.button6.TabIndex = 2;
@@ -170,7 +177,7 @@
             this.button7.ForeColor = System.Drawing.Color.White;
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(3, 89);
+            this.button7.Location = new System.Drawing.Point(3, 99);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(186, 37);
             this.button7.TabIndex = 2;
@@ -187,7 +194,7 @@
             this.button9.ForeColor = System.Drawing.Color.White;
             this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
             this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(3, 132);
+            this.button9.Location = new System.Drawing.Point(3, 142);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(186, 37);
             this.button9.TabIndex = 2;
@@ -204,7 +211,7 @@
             this.button10.ForeColor = System.Drawing.Color.White;
             this.button10.Image = ((System.Drawing.Image)(resources.GetObject("button10.Image")));
             this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(3, 175);
+            this.button10.Location = new System.Drawing.Point(3, 185);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(186, 37);
             this.button10.TabIndex = 2;
@@ -338,21 +345,6 @@
             this.btnHoadonban.UseVisualStyleBackColor = false;
             this.btnHoadonban.Click += new System.EventHandler(this.btnHoadonban_Click);
             // 
-            // QuanlychungTransition
-            // 
-            this.QuanlychungTransition.Interval = 10;
-            this.QuanlychungTransition.Tick += new System.EventHandler(this.QuanlychungTransition_Tick);
-            // 
-            // HoadonnhapTransition
-            // 
-            this.HoadonnhapTransition.Interval = 10;
-            this.HoadonnhapTransition.Tick += new System.EventHandler(this.HoadonnhapTransition_Tick);
-            // 
-            // HoadonbanTransition
-            // 
-            this.HoadonbanTransition.Interval = 10;
-            this.HoadonbanTransition.Tick += new System.EventHandler(this.HoadonbanTransition_Tick);
-            // 
             // BaocaoContainer
             // 
             this.BaocaoContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
@@ -364,6 +356,23 @@
             this.BaocaoContainer.Name = "BaocaoContainer";
             this.BaocaoContainer.Size = new System.Drawing.Size(229, 47);
             this.BaocaoContainer.TabIndex = 5;
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.Location = new System.Drawing.Point(3, 129);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(186, 37);
+            this.button5.TabIndex = 5;
+            this.button5.Text = " Sản phẩm";
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
@@ -417,27 +426,105 @@
             this.btnBaocao.UseVisualStyleBackColor = false;
             this.btnBaocao.Click += new System.EventHandler(this.btnBaocao_Click);
             // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.panel2.Controls.Add(this.button8);
+            this.panel2.Controls.Add(this.button11);
+            this.panel2.Controls.Add(this.button12);
+            this.panel2.Controls.Add(this.btnDangxuat);
+            this.panel2.Location = new System.Drawing.Point(3, 215);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(229, 47);
+            this.panel2.TabIndex = 6;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.ForeColor = System.Drawing.Color.White;
+            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.Location = new System.Drawing.Point(3, 129);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(186, 37);
+            this.button8.TabIndex = 5;
+            this.button8.Text = " Sản phẩm";
+            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.button11.FlatAppearance.BorderSize = 0;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button11.ForeColor = System.Drawing.Color.White;
+            this.button11.Image = ((System.Drawing.Image)(resources.GetObject("button11.Image")));
+            this.button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button11.Location = new System.Drawing.Point(3, 86);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(186, 37);
+            this.button11.TabIndex = 4;
+            this.button11.Text = " Nhân viên ";
+            this.button11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button11.UseVisualStyleBackColor = false;
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.button12.FlatAppearance.BorderSize = 0;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button12.ForeColor = System.Drawing.Color.White;
+            this.button12.Image = ((System.Drawing.Image)(resources.GetObject("button12.Image")));
+            this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button12.Location = new System.Drawing.Point(3, 46);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(214, 37);
+            this.button12.TabIndex = 3;
+            this.button12.Text = " Kinh doanh ";
+            this.button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button12.UseVisualStyleBackColor = false;
+            // 
+            // btnDangxuat
+            // 
+            this.btnDangxuat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnDangxuat.FlatAppearance.BorderSize = 0;
+            this.btnDangxuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDangxuat.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDangxuat.ForeColor = System.Drawing.Color.White;
+            this.btnDangxuat.Image = ((System.Drawing.Image)(resources.GetObject("btnDangxuat.Image")));
+            this.btnDangxuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDangxuat.Location = new System.Drawing.Point(3, 3);
+            this.btnDangxuat.Name = "btnDangxuat";
+            this.btnDangxuat.Size = new System.Drawing.Size(186, 37);
+            this.btnDangxuat.TabIndex = 2;
+            this.btnDangxuat.Text = "  Đăng xuất ";
+            this.btnDangxuat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDangxuat.UseVisualStyleBackColor = false;
+            // 
+            // QuanlychungTransition
+            // 
+            this.QuanlychungTransition.Interval = 10;
+            this.QuanlychungTransition.Tick += new System.EventHandler(this.QuanlychungTransition_Tick);
+            // 
+            // HoadonnhapTransition
+            // 
+            this.HoadonnhapTransition.Interval = 10;
+            this.HoadonnhapTransition.Tick += new System.EventHandler(this.HoadonnhapTransition_Tick);
+            // 
+            // HoadonbanTransition
+            // 
+            this.HoadonbanTransition.Interval = 10;
+            this.HoadonbanTransition.Tick += new System.EventHandler(this.HoadonbanTransition_Tick);
+            // 
             // SidebarTransition
             // 
             this.SidebarTransition.Interval = 10;
             this.SidebarTransition.Tick += new System.EventHandler(this.SidebarTransition_Tick);
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(3, 129);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(186, 37);
-            this.button5.TabIndex = 5;
-            this.button5.Text = " Sản phẩm";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = false;
             // 
             // BaocaoTransition
             // 
@@ -462,6 +549,7 @@
             this.HoadonnhapContainer.ResumeLayout(false);
             this.HoadonbanContainer.ResumeLayout(false);
             this.BaocaoContainer.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -496,5 +584,10 @@
         private System.Windows.Forms.Timer SidebarTransition;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Timer BaocaoTransition;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button btnDangxuat;
     }
 }

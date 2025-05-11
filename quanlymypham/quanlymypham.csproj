@@ -46,11 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Dangnhap.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Dangnhap.Designer.cs">
+      <DependentUpon>Dangnhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Dangky.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dangky.Designer.cs">
+      <DependentUpon>Dangky.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GD_Chinh.cs">
       <SubType>Form</SubType>
@@ -58,8 +64,15 @@
     <Compile Include="Forms\GD_Chinh.Designer.cs">
       <DependentUpon>GD_Chinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Functions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Dangnhap.resx">
+      <DependentUpon>Dangnhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dangky.resx">
+      <DependentUpon>Dangky.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\GD_Chinh.resx">
       <DependentUpon>GD_Chinh.cs</DependentUpon>
     </EmbeddedResource>
