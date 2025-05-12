@@ -12,6 +12,9 @@ namespace quanlymypham.Forms
 {
     public partial class GD_Chinh : Form
     {
+        formNhanvien nhanvien;
+        formNCC ncc;
+
         public GD_Chinh()
         {
             InitializeComponent();
@@ -107,20 +110,32 @@ namespace quanlymypham.Forms
         {
             if (SidebarExpand)
             {
-                Sidebar.Width -= 10;
-                if (Sidebar.Width <= 42)
+                panelContent.Width -= 10;
+                if (panelContent.Width <= 42)
                 {
-                    SidebarTransition.Stop();
                     SidebarExpand = false;
+                    SidebarTransition.Stop();                    
+                    QuanlychungContainer.Width = panelContent.Width;
+                    HoadonnhapContainer.Width = panelContent.Width;
+                    HoadonbanContainer.Width = panelContent.Width;
+                    BaocaoContainer.Width = panelContent.Width;
+                    pnDangxuat.Width = panelContent.Width;
                 }
             }
             else
             {
-                Sidebar.Width += 10;
-                if (Sidebar.Width >= 232)
+                panelContent.Width += 10;
+                if (panelContent.Width >= 232)
                 {
-                    SidebarTransition.Stop();
                     SidebarExpand = true;
+                    SidebarTransition.Stop();
+                    QuanlychungContainer.Width = panelContent.Width;
+                    HoadonnhapContainer.Width = panelContent.Width;
+                    HoadonbanContainer.Width = panelContent.Width;
+                    BaocaoContainer.Width = panelContent.Width;
+                    pnDangxuat.Width = panelContent.Width;
+
+
                 }
             }
         }
@@ -157,5 +172,49 @@ namespace quanlymypham.Forms
         {
             BaocaoTransition.Start();
         }
+
+        private void GD_Chinh_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNhanvien_Click(object sender, EventArgs e)
+        {
+            if(nhanvien == null || nhanvien.IsDisposed)
+            {
+                nhanvien = new formNhanvien();
+                nhanvien.TopLevel = false;
+                nhanvien.FormBorderStyle = FormBorderStyle.None;
+                nhanvien.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(nhanvien);
+                nhanvien.Size = panelContent.ClientSize;
+                nhanvien.Show();
+            }
+            else
+            {
+                nhanvien.BringToFront();
+            }
+        }
+        
+
+        private void btnNCC_Click(object sender, EventArgs e)
+        {
+            if (ncc == null)
+            {
+                ncc = new formNCC();
+                ncc.TopLevel = false;
+                ncc.FormBorderStyle = FormBorderStyle.None;
+                ncc.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(ncc);
+                ncc.Show();
+            }
+            else
+            {
+                ncc.BringToFront();
+            }
+        }
+        
     }
 }
