@@ -12,10 +12,10 @@ namespace quanlymypham
     class Functions
     {
         public static SqlConnection conn;
-        public static string connString; 
+        public static string connString;
         public static void Connect()
         {
-            connString = @"Data Source=MSI\NGAN;Initial Catalog=quanlymypham;Integrated Security=True";
+            connString = "Data Source=MSI/NGAN;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
             conn = new SqlConnection();
             conn.ConnectionString = connString;
             if (conn.State == ConnectionState.Closed)
@@ -82,6 +82,70 @@ namespace quanlymypham
                 Disconnect();
             }
         }
+        public static void FillCombo(string sql, ComboBox cbo, string ma, string ten)
+        {
+            Functions.Connect();
+            SqlDataAdapter Mydata = new SqlDataAdapter(sql, Functions.conn);
+            DataTable table = new DataTable();
+            Mydata.Fill(table);
+            cbo.DataSource = table;
+
+            cbo.ValueMember = ma;
+            cbo.DisplayMember = ten;
+
+        }
+
+        
+
+
+        public static bool CheckKey(string sql)
+        {
+            Connect();
+            SqlDataAdapter Mydata = new SqlDataAdapter(sql, Functions.conn);
+            DataTable table = new DataTable();
+            Mydata.Fill(table);
+            if (table.Rows.Count > 0)
+                return true;
+            else
+                return false;
+        }
+        public static void RunSql(string sql)
+        {
+            Connect();
+            SqlCommand cmd;		                
+            cmd = new SqlCommand();	         
+            cmd.Connection = Functions.conn;	  
+            cmd.CommandText = sql;			  
+            try
+            {
+                cmd.ExecuteNonQuery();		 
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            cmd.Dispose();
+            cmd = null;
+        }
+
+        public static void RunSqlDel(string sql)
+        {
+            Connect();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = Functions.conn;
+            cmd.CommandText = sql;
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (System.Exception)
+            {
+                MessageBox.Show("Dữ liệu đang được dùng, không thể xóa...", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            cmd.Dispose();
+            cmd = null;
+        }
+
     }
-    
 }
+  
