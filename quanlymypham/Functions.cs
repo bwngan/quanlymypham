@@ -34,52 +34,32 @@ namespace quanlymypham
         }
         public static DataTable GetDataToTable(string sql)
         {
-            DataTable table = new DataTable();
-            try
-            {
-                // 1) Mở kết nối
-                Connect();
+            
+            Connect();
 
-                // 2) Tạo adapter với command có kết nối
-                using (var cmd = new SqlCommand(sql, conn))
-                using (var da = new SqlDataAdapter(cmd))
-                {
-                    da.Fill(table);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message);
-            }
-            finally
-            {
-                // 3) Đóng kết nối trong mọi trường hợp
-                Disconnect();
-            }
+            SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            DataTable table = new DataTable();
+            da.Fill(table);
+
+            Disconnect();
+
             return table;
+
         }
-        public static object GetFieldValues(string sql, params SqlParameter[] pars)
+
+
+        public static object GetFieldValues(string sql)
         {
-            object value = null;
-            try
+            string ma = "";
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
             {
-                Connect();
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    if (pars != null && pars.Length > 0)
-                        cmd.Parameters.AddRange(pars);
-                    value = cmd.ExecuteScalar();
-                }
+                ma=reader.GetValue(0).ToString();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi truy vấn: " + ex.Message);
-            }
-            finally
-            {
-                Disconnect();
-            }
-            return value;
+            reader.Close();
+            return ma;
         }
         public static void ExecuteSql(string sql, params SqlParameter[] pars)
         {
