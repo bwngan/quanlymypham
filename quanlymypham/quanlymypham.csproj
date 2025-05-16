@@ -58,6 +58,12 @@
     <Compile Include="Forms\Dangky.Designer.cs">
       <DependentUpon>Dangky.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\formKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\formKhachHang.Designer.cs">
+      <DependentUpon>formKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\formNhanvien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,12 @@
     </Compile>
     <Compile Include="Forms\formNCC.Designer.cs">
       <DependentUpon>formNCC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\formSanPham.Designer.cs">
+      <DependentUpon>formSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\GD_Chinh.cs">
       <SubType>Form</SubType>
@@ -85,11 +97,17 @@
     <EmbeddedResource Include="Forms\Dangky.resx">
       <DependentUpon>Dangky.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formKhachHang.resx">
+      <DependentUpon>formKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\formNCC.resx">
       <DependentUpon>formNCC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formNhanvien.resx">
       <DependentUpon>formNhanvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formSanPham.resx">
+      <DependentUpon>formSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GD_Chinh.resx">
       <DependentUpon>GD_Chinh.cs</DependentUpon>

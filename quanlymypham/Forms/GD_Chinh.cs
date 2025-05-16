@@ -14,6 +14,8 @@ namespace quanlymypham.Forms
     {
         formNhanvien nhanvien;
         formNCC ncc;
+        formSanPham sanpham;
+        formKhachHang khachhang;
 
         public GD_Chinh()
         {
@@ -40,7 +42,7 @@ namespace quanlymypham.Forms
                     QuanlychungExpand = false;
                 }
             }
-            
+
         }
 
         private void btnQuanlychung_Click(object sender, EventArgs e)
@@ -69,7 +71,7 @@ namespace quanlymypham.Forms
                     HoadonnhapExpand = false;
                 }
             }
-            
+
         }
 
         private void btnHoadonhap_Click(object sender, EventArgs e)
@@ -98,7 +100,7 @@ namespace quanlymypham.Forms
                     HoadonbanExpand = false;
                 }
             }
-            
+
         }
 
         private void btnHoadonban_Click(object sender, EventArgs e)
@@ -114,7 +116,7 @@ namespace quanlymypham.Forms
                 if (panelContent.Width <= 42)
                 {
                     SidebarExpand = false;
-                    SidebarTransition.Stop();                    
+                    SidebarTransition.Stop();
                     QuanlychungContainer.Width = panelContent.Width;
                     HoadonnhapContainer.Width = panelContent.Width;
                     HoadonbanContainer.Width = panelContent.Width;
@@ -180,7 +182,7 @@ namespace quanlymypham.Forms
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
-            if(nhanvien == null || nhanvien.IsDisposed)
+            if (nhanvien == null || nhanvien.IsDisposed)
             {
                 nhanvien = new formNhanvien();
                 nhanvien.TopLevel = false;
@@ -196,7 +198,7 @@ namespace quanlymypham.Forms
                 nhanvien.BringToFront();
             }
         }
-        
+
 
         private void btnNCC_Click(object sender, EventArgs e)
         {
@@ -215,6 +217,61 @@ namespace quanlymypham.Forms
                 ncc.BringToFront();
             }
         }
-        
+
+        private void btnsanpham_Click(object sender, EventArgs e)
+        {
+            if (sanpham == null || sanpham.IsDisposed)
+            {
+                sanpham = new formSanPham();
+                sanpham.TopLevel = false;
+                sanpham.FormBorderStyle = FormBorderStyle.None;
+                sanpham.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(sanpham);
+                sanpham.Show();
+            }
+            else
+            {
+                sanpham.BringToFront();
+            }
+            ResetMenuHighlight();
+            btnsanpham.BackColor = Color.SteelBlue;
+        }
+        private void ResetMenuHighlight()
+        {
+            btnsanpham.BackColor = default(Color);
+            btnkhachhang.BackColor = default(Color);
+            btnNhanvien.BackColor = default(Color);
+            btnNCC.BackColor = default(Color);
+        }
+
+
+        private void btnkhachhang_Click(object sender, EventArgs e)
+        {
+            if (khachhang == null || khachhang.IsDisposed)
+            {
+                khachhang = new formKhachHang();
+                khachhang.TopLevel = false;
+                khachhang.FormBorderStyle = FormBorderStyle.None;
+                khachhang.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(khachhang);
+                khachhang.Show();
+            }
+            else
+            {
+                khachhang.BringToFront();
+            }
+            ResetMenuHighlight();
+            btnkhachhang.BackColor = Color.SteelBlue;
+        }
+        public void HighlightKhachHangMenu()
+        {
+            btnkhachhang.BackColor = Color.SteelBlue;
+        }
+        public void HighlightSanPhamMenu()
+        {
+            btnsanpham.BackColor = Color.SteelBlue;
+        }
     }
 }

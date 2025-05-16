@@ -12,10 +12,10 @@ namespace quanlymypham
     class Functions
     {
         public static SqlConnection conn;
-        public static string connString; 
+        public static string connString;
         public static void Connect()
         {
-            connString = @"Data Source=MSI\NGAN;Initial Catalog=quanlymypham;Integrated Security=True";
+            connString = "Data Source=ADMIN-PC\\THU;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
             conn = new SqlConnection();
             conn.ConnectionString = connString;
             if (conn.State == ConnectionState.Closed)
@@ -34,30 +34,30 @@ namespace quanlymypham
         }
         public static DataTable GetDataToTable(string sql)
         {
-            DataTable table = new DataTable();
+            var table = new DataTable();
             try
             {
-                // 1) Mở kết nối
                 Connect();
 
-                // 2) Tạo adapter với command có kết nối
-                using (var cmd = new SqlCommand(sql, conn))
-                using (var da = new SqlDataAdapter(cmd))
+                using (var da = new SqlDataAdapter(sql, conn))
                 {
                     da.Fill(table);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message);
+                MessageBox.Show("Lỗi lấy dữ liệu: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                // 3) Đóng kết nối trong mọi trường hợp
                 Disconnect();
             }
             return table;
         }
+
+
+       
         public static object GetFieldValues(string sql, params SqlParameter[] pars)
         {
             object value = null;
@@ -102,6 +102,83 @@ namespace quanlymypham
                 Disconnect();
             }
         }
+        public static void FillCombo(string sql, ComboBox cbo, string ma, string ten)
+        {
+            Functions.Connect();
+            SqlDataAdapter Mydata = new SqlDataAdapter(sql, Functions.conn);
+            DataTable table = new DataTable();
+            Mydata.Fill(table);
+            cbo.DataSource = table;
+
+            cbo.ValueMember = ma;
+            cbo.DisplayMember = ten;
+
+        }
+
+        public static string GetFieldValues(string sql)
+        {
+            Connect();
+            string ma = "";
+            SqlCommand cmd = new SqlCommand(sql, Functions.conn);
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ma = reader.GetValue(0).ToString();
+            }
+            reader.Close();
+            return ma;
+        }
+
+
+        public static bool CheckKey(string sql)
+        {
+            Connect();
+            SqlDataAdapter Mydata = new SqlDataAdapter(sql, Functions.conn);
+            DataTable table = new DataTable();
+            Mydata.Fill(table);
+            if (table.Rows.Count > 0)
+                return true;
+            else
+                return false;
+        }
+        public static void RunSql(string sql)
+        {
+            Connect();
+            SqlCommand cmd;		                
+            cmd = new SqlCommand();	         
+            cmd.Connection = Functions.conn;	  
+            cmd.CommandText = sql;			  
+            try
+            {
+                cmd.ExecuteNonQuery();		 
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            cmd.Dispose();
+            cmd = null;
+        }
+
+        public static void RunSqlDel(string sql)
+        {
+            Connect();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = Functions.conn;
+            cmd.CommandText = sql;
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (System.Exception)
+            {
+                MessageBox.Show("Dữ liệu đang được dùng, không thể xóa...", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            cmd.Dispose();
+            cmd = null;
+        }
+
     }
-    
 }
+  
