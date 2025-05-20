@@ -309,6 +309,7 @@
             this.btnXoa.TabIndex = 8;
             this.btnXoa.Text = "Xóa Hóa Đơn";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnIn
             // 
@@ -318,6 +319,7 @@
             this.btnIn.TabIndex = 9;
             this.btnIn.Text = "In Hóa Đơn";
             this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // btnDong
             // 
@@ -327,6 +329,7 @@
             this.btnDong.TabIndex = 10;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
+            this.btnDong.Click += new System.EventHandler(this.btnDong_Click);
             // 
             // formChitietHDN
             // 
