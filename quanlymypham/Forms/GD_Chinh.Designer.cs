@@ -49,8 +49,8 @@
             this.btnDshoadon = new System.Windows.Forms.Button();
             this.btnTaohoadon = new System.Windows.Forms.Button();
             this.HoadonbanContainer = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btntaoHD = new System.Windows.Forms.Button();
+            this.btndanhsachHD = new System.Windows.Forms.Button();
             this.btnHoadonban = new System.Windows.Forms.Button();
             this.BaocaoContainer = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
@@ -312,50 +312,51 @@
             // HoadonbanContainer
             // 
             this.HoadonbanContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.HoadonbanContainer.Controls.Add(this.button2);
-            this.HoadonbanContainer.Controls.Add(this.button1);
             this.HoadonbanContainer.Controls.Add(this.btnHoadonban);
+            this.HoadonbanContainer.Controls.Add(this.btntaoHD);
+            this.HoadonbanContainer.Controls.Add(this.btndanhsachHD);
             this.HoadonbanContainer.Location = new System.Drawing.Point(3, 354);
             this.HoadonbanContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.HoadonbanContainer.Name = "HoadonbanContainer";
-            this.HoadonbanContainer.Size = new System.Drawing.Size(258, 59);
+            this.HoadonbanContainer.Size = new System.Drawing.Size(258, 257);
             this.HoadonbanContainer.TabIndex = 4;
             // 
-            // button2
+            // btntaoHD
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(3, 108);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(209, 46);
-            this.button2.TabIndex = 4;
-            this.button2.Text = " Quản lý chung";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btntaoHD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btntaoHD.FlatAppearance.BorderSize = 0;
+            this.btntaoHD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btntaoHD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btntaoHD.ForeColor = System.Drawing.Color.White;
+            this.btntaoHD.Image = ((System.Drawing.Image)(resources.GetObject("btntaoHD.Image")));
+            this.btntaoHD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btntaoHD.Location = new System.Drawing.Point(3, 108);
+            this.btntaoHD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btntaoHD.Name = "btntaoHD";
+            this.btntaoHD.Size = new System.Drawing.Size(209, 46);
+            this.btntaoHD.TabIndex = 4;
+            this.btntaoHD.Text = "Tạo hoá đơn";
+            this.btntaoHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btntaoHD.UseVisualStyleBackColor = false;
+            this.btntaoHD.Click += new System.EventHandler(this.btntaoHD_Click);
             // 
-            // button1
+            // btndanhsachHD
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(3, 58);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(241, 46);
-            this.button1.TabIndex = 3;
-            this.button1.Text = " Danh sách hóa đơn ";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btndanhsachHD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btndanhsachHD.FlatAppearance.BorderSize = 0;
+            this.btndanhsachHD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btndanhsachHD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btndanhsachHD.ForeColor = System.Drawing.Color.White;
+            this.btndanhsachHD.Image = ((System.Drawing.Image)(resources.GetObject("btndanhsachHD.Image")));
+            this.btndanhsachHD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btndanhsachHD.Location = new System.Drawing.Point(3, 58);
+            this.btndanhsachHD.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btndanhsachHD.Name = "btndanhsachHD";
+            this.btndanhsachHD.Size = new System.Drawing.Size(241, 46);
+            this.btndanhsachHD.TabIndex = 3;
+            this.btndanhsachHD.Text = " Danh sách hóa đơn ";
+            this.btndanhsachHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btndanhsachHD.UseVisualStyleBackColor = false;
             // 
             // btnHoadonban
             // 
@@ -366,7 +367,7 @@
             this.btnHoadonban.ForeColor = System.Drawing.Color.White;
             this.btnHoadonban.Image = ((System.Drawing.Image)(resources.GetObject("btnHoadonban.Image")));
             this.btnHoadonban.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHoadonban.Location = new System.Drawing.Point(3, 4);
+            this.btnHoadonban.Location = new System.Drawing.Point(3, 9);
             this.btnHoadonban.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnHoadonban.Name = "btnHoadonban";
             this.btnHoadonban.Size = new System.Drawing.Size(236, 46);
@@ -383,7 +384,7 @@
             this.BaocaoContainer.Controls.Add(this.button3);
             this.BaocaoContainer.Controls.Add(this.button4);
             this.BaocaoContainer.Controls.Add(this.btnBaocao);
-            this.BaocaoContainer.Location = new System.Drawing.Point(3, 421);
+            this.BaocaoContainer.Location = new System.Drawing.Point(3, 619);
             this.BaocaoContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BaocaoContainer.Name = "BaocaoContainer";
             this.BaocaoContainer.Size = new System.Drawing.Size(258, 59);
@@ -469,7 +470,7 @@
             this.pnDangxuat.Controls.Add(this.button11);
             this.pnDangxuat.Controls.Add(this.button12);
             this.pnDangxuat.Controls.Add(this.btnDangxuat);
-            this.pnDangxuat.Location = new System.Drawing.Point(3, 488);
+            this.pnDangxuat.Location = new System.Drawing.Point(3, 686);
             this.pnDangxuat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnDangxuat.Name = "pnDangxuat";
             this.pnDangxuat.Size = new System.Drawing.Size(258, 59);
@@ -616,8 +617,8 @@
         private System.Windows.Forms.Button btnHoadonhap;
         private System.Windows.Forms.Button btnTaohoadon;
         private System.Windows.Forms.Panel HoadonbanContainer;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btntaoHD;
+        private System.Windows.Forms.Button btndanhsachHD;
         private System.Windows.Forms.Button btnHoadonban;
         private System.Windows.Forms.Panel BaocaoContainer;
         private System.Windows.Forms.Button button5;

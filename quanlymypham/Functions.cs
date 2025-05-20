@@ -16,7 +16,7 @@ namespace quanlymypham
         public static string connString;
         public static void Connect()
         {
-            connString = @"Data Source=MSI\NGAN;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
+            connString = "Data Source=ADMIN-PC\\THU;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
             conn = new SqlConnection();
             conn.ConnectionString = connString;
             if (conn.State == ConnectionState.Closed)

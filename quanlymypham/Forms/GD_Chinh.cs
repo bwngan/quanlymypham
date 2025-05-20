@@ -16,6 +16,7 @@ namespace quanlymypham.Forms
         formNCC ncc;
         formSanPham sanpham;
         formKhachHang khachhang;
+        
 
         public GD_Chinh()
         {
@@ -273,5 +274,27 @@ namespace quanlymypham.Forms
         {
             btnsanpham.BackColor = Color.SteelBlue;
         }
+
+        private void btntaoHD_Click(object sender, EventArgs e)
+        {
+            var f = new formThemHDB();
+
+            f.TopLevel = false;
+            f.FormBorderStyle = FormBorderStyle.None;
+            f.Dock = DockStyle.Fill;
+
+            panelContent.Controls.Clear();
+            panelContent.Controls.Add(f);
+
+            f.Show();
+
+            ResetMenuHighlight();
+            btnHoadonban.BackColor = Color.SteelBlue;
+        }
+
+        
+        
+
+
     }
 }
