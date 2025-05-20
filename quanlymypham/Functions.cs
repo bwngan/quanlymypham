@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace quanlymypham
 {
@@ -15,7 +16,7 @@ namespace quanlymypham
         public static string connString;
         public static void Connect()
         {
-            connString = "Data Source=MSI/NGAN;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
+            connString = @"Data Source=MSI\NGAN;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
             conn = new SqlConnection();
             conn.ConnectionString = connString;
             if (conn.State == ConnectionState.Closed)
@@ -34,7 +35,7 @@ namespace quanlymypham
         }
         public static DataTable GetDataToTable(string sql)
         {
-            
+
             Connect();
 
             SqlDataAdapter da = new SqlDataAdapter(sql, conn);
@@ -50,16 +51,16 @@ namespace quanlymypham
 
         public static object GetFieldValues(string sql)
         {
-            string ma = "";
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            reader = cmd.ExecuteReader();
-            while (reader.Read())
+            Connect();
+            using (var cmd = new SqlCommand(sql, conn))
+            using (var reader = cmd.ExecuteReader())
             {
-                ma=reader.GetValue(0).ToString();
+                if (reader.Read())
+                    return reader[0]?.ToString() ?? "";
             }
-            reader.Close();
-            return ma;
+            Disconnect();
+            return "";
+
         }
         public static void ExecuteSql(string sql, params SqlParameter[] pars)
         {
@@ -95,7 +96,7 @@ namespace quanlymypham
 
         }
 
-        
+
 
 
         public static bool CheckKey(string sql)
@@ -112,13 +113,13 @@ namespace quanlymypham
         public static void RunSql(string sql)
         {
             Connect();
-            SqlCommand cmd;		                
-            cmd = new SqlCommand();	         
-            cmd.Connection = Functions.conn;	  
-            cmd.CommandText = sql;			  
+            SqlCommand cmd;
+            cmd = new SqlCommand();
+            cmd.Connection = Functions.conn;
+            cmd.CommandText = sql;
             try
             {
-                cmd.ExecuteNonQuery();		 
+                cmd.ExecuteNonQuery();
             }
             catch (System.Exception ex)
             {
@@ -140,10 +141,30 @@ namespace quanlymypham
             }
             catch (System.Exception)
             {
-                MessageBox.Show("Dữ liệu đang được dùng, không thể xóa...", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("Dữ liệu đang được dùng, không thể xóa...", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             cmd.Dispose();
             cmd = null;
+        }
+        public static bool IsDate(string strDate)
+        {
+            DateTime tmp;
+            return DateTime.TryParseExact(
+                strDate,
+                "dd/MM/yyyy",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out tmp
+            );
+        }
+        public static string CreateKey(string tiento)
+        {
+            string key = tiento;
+            DateTime dt = DateTime.Now;
+            string datePart = dt.ToString("yyyyMMdd");
+            string timePart = dt.ToString("HHmmss");
+            key += datePart + timePart;
+            return key;
         }
 
     }

@@ -12,7 +12,7 @@ namespace quanlymypham.Forms
 {
     public partial class GD_Chinh : Form
     {
-        formNhanvien nhanvien;
+        formNV nhanvien;
         formNCC ncc;
         formSanPham sanpham;
         formKhachHang khachhang;
@@ -184,7 +184,7 @@ namespace quanlymypham.Forms
         {
             if (nhanvien == null || nhanvien.IsDisposed)
             {
-                nhanvien = new formNhanvien();
+                nhanvien = new formNV();
                 nhanvien.TopLevel = false;
                 nhanvien.FormBorderStyle = FormBorderStyle.None;
                 nhanvien.Dock = DockStyle.Fill;

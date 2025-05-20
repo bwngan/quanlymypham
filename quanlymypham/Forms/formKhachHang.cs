@@ -252,5 +252,20 @@ namespace quanlymypham.Forms
             var main = Application.OpenForms.OfType<GD_Chinh>().FirstOrDefault();
             
         }
+
+        private void dataGridViewKH_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
