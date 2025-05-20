@@ -166,6 +166,86 @@ namespace quanlymypham
             key += datePart + timePart;
             return key;
         }
+        public static string ChuyenSoSangChu(string sNumber)
+        {
+            int mLen;
+            decimal nDigit;
+            string mTemp = "";
+            string[] nNumText;
+            // Xóa các dấu "." nếu có
+            sNumber = sNumber.Replace(".", "");
+            nNumText = "không;một;hai;ba;bốn;năm;sáu;bảy;tám;chín".Split(';');
+            mLen = sNumber.Length - 1; // trừ 1 vì vị trí đi từ 0
+            for (int i = 0; i <= mLen; i++)
+            {
+                nDigit = Convert.ToDecimal(sNumber.Substring(i, 1));
+                mTemp = mTemp + nNumText[(int)nDigit];
+                if ((mLen - i) % 9 == 0 && (mLen - i) != 0)
+                {
+                    mTemp = mTemp + " tỷ";
+                    if (sNumber.Substring(i + 1, 3) == "000")
+                    {
+                        i = i + 3;
+                    }
+                    if (sNumber.Substring(i + 1, 3) == "000")
+                    {
+                        i = i + 3;
+                    }
+                }
+                else if ((mLen - i) % 6 == 0 && (mLen - i) != 0)
+                {
+                    mTemp = mTemp + " triệu";
+                    if (sNumber.Substring(i + 1, 3) == "000")
+                    {
+                        i = i + 3;
+                    }
+                    if (sNumber.Substring(i + 1, 3) == "000")
+                    {
+                        i = i + 3;
+                    }
+                }
+                else if ((mLen - i) % 3 == 0 && (mLen - i) != 0)
+                {
+                    mTemp = mTemp + " nghìn";
+                    if (sNumber.Substring(i + 1, 3) == "000")
+                    {
+                        i = i + 3;
+                    }
+                }
+
+                switch ((mLen - i) % 3)
+                {
+                    case 2:
+                        mTemp = mTemp + " trăm";
+                        break;
+                    case 1:
+                        mTemp = mTemp + " mươi";
+                        break;
+                }
+            }
+
+            // Loại bỏ trường hợp x00
+            mTemp = mTemp.Replace("không mươi không", "");
+            mTemp = mTemp.Replace("không mươi", "");
+            // Loại bỏ trường hợp 0x0
+            mTemp = mTemp.Replace("không trăm không", "");
+            mTemp = mTemp.Replace("không trăm", "");
+            // Loại bỏ trường hợp x0, x00
+            mTemp = mTemp.Replace("mươi không", "mươi");
+            mTemp = mTemp.Replace("mươi một", "mươi mốt");
+            // Fix trường hợp x04, x05
+            mTemp = mTemp.Replace("linh bốn", "linh tư");
+            mTemp = mTemp.Replace("mươi bốn", "mươi tư");
+            mTemp = mTemp.Replace("linh năm", "linh lăm");
+            mTemp = mTemp.Replace("mươi năm", "mươi lăm");
+            mTemp = mTemp.Replace("mươi một", "mươi mốt");
+            // Bỏ ký tự space thừa
+            mTemp = mTemp.Trim();
+            // Viết hoa ký tự đầu tiên
+            mTemp = mTemp.Substring(0, 1).ToUpper() + mTemp.Substring(1) + " đồng";
+            return mTemp;
+        }
+
 
     }
 }

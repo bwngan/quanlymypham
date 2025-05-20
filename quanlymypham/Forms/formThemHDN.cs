@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace quanlymypham.Forms
 {
@@ -36,11 +35,11 @@ namespace quanlymypham.Forms
             btnXoa.Enabled = false;
             btnBoqua1.Enabled = false;
             btnIn.Enabled = false;
-            btnXoasp.Enabled = false;            
+            btnXoasp.Enabled = false;
             dtpNgaynhap.Value = DateTime.Now;
             btnIn.Enabled = false;
             btnXoa.Enabled = false;
-            Functions.FillCombo("SELECT TenNV, MaNV FROM NhanVien", cboMaNV, "TenNV" ,"MaNV");
+            Functions.FillCombo("SELECT TenNV, MaNV FROM NhanVien", cboMaNV, "TenNV", "MaNV");
             cboMaNV.SelectedIndex = -1;
             Functions.FillCombo("SELECT TenNCC, MaNCC FROM NhaCungCap", cboMaNCC, "TenNCC", "MaNCC");
             cboMaNCC.SelectedIndex = -1;
@@ -52,7 +51,7 @@ namespace quanlymypham.Forms
         private void cboMaNV_TextChanged(object sender, EventArgs e)
         {
             string str;
-            if(cboMaNV.Text == "")
+            if (cboMaNV.Text == "")
             {
                 txtTennv.Text = "";
                 return;
@@ -60,6 +59,7 @@ namespace quanlymypham.Forms
             str = "SELECT TenNV FROM NhanVien WHERE MaNV = N'" + cboMaNV.Text + "'";
             txtTennv.Text = Functions.GetFieldValues(str).ToString();
         }
+
         private void cboMaNCC_TextChanged(object sender, EventArgs e)
         {
             string str;
@@ -77,6 +77,7 @@ namespace quanlymypham.Forms
             str = "SELECT DienThoai FROM NhaCungCap WHERE MaNCC = N'" + cboMaNCC.Text + "'";
             mskDienthoai.Text = Functions.GetFieldValues(str).ToString();
         }
+
         private void cboMaHH_TextChanged(object sender, EventArgs e)
         {
             string str;
@@ -95,18 +96,19 @@ namespace quanlymypham.Forms
         {
             if (txtDGN.Text == "")
             {
+
                 txtThanhtien.Text = "0";
             }
             if (nudSoluong.Text == "")
             {
                 txtThanhtien.Text = "0";
             }
-            if(nudGiamgia.Text == "")
+            if (nudGiamgia.Text == "")
             {
                 nudGiamgia.Text = "0";
             }
             decimal Dongianhap = decimal.Parse(txtDGN.Text);
-            int Giamgia= Convert.ToInt32(nudGiamgia.Value);
+            int Giamgia = Convert.ToInt32(nudGiamgia.Value);
             int Soluong = Convert.ToInt32(nudSoluong.Value);
             decimal Thanhtien = (Dongianhap * Soluong) - ((Dongianhap * Soluong) * Giamgia / 100);
             txtThanhtien.Text = Thanhtien.ToString();
@@ -122,18 +124,17 @@ namespace quanlymypham.Forms
             dataGridViewDSSP.DataSource = tblTHDN;
             dataGridViewDSSP.AllowUserToAddRows = false;
             dataGridViewDSSP.EditMode = DataGridViewEditMode.EditProgrammatically;
-
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if(cboMaHH.Text.Trim().Length == 0)
+            if (cboMaHH.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa chọn sản phẩm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cboMaHH.Focus();
                 return;
             }
-            if(nudSoluong.Text.Trim().Length == 0)
+            if (nudSoluong.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Bạn chưa nhập số lượng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 nudSoluong.Focus();
@@ -154,7 +155,7 @@ namespace quanlymypham.Forms
                     cboMaHH.Focus();
                     return;
                 }
-                
+
             }
             // hỏi lại trc khi thay đổi đơn giá
             string sql;
@@ -163,12 +164,12 @@ namespace quanlymypham.Forms
             tblDongia = Functions.GetDataToTable(sql);
             decimal dongia = 0;
             string mahang = string.Empty;
-            for(int i = 0; i < tblDongia.Rows.Count; i++)
+            for (int i = 0; i < tblDongia.Rows.Count; i++)
             {
                 mahang = Convert.ToString(tblDongia.Rows[i]["MaHang"]);
                 dongia = Convert.ToDecimal(tblDongia.Rows[i]["DonGiaNhap"]);
             }
-            if(cboMaHH.Text== mahang && txtDGN.Text == dongia.ToString())
+            if (cboMaHH.Text == mahang && txtDGN.Text == dongia.ToString())
             {
                 DataRow newRow = tblTHDN.NewRow();
                 newRow["Mã Hàng Hóa"] = cboMaHH.SelectedValue.ToString();
@@ -200,9 +201,48 @@ namespace quanlymypham.Forms
                 {
                     MessageBox.Show("Bạn đã không thay đổi đơn giá nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     cboMaHH.Focus();
-                    return; 
-                }
+                    return;
+                }                          
             }
+            // sp thêm vào và tính các label 
+            int sumSoluongSP = 0;
+            int sumSp;
+            decimal sumThanhtien = 0;
+            for (int i = 0; i < tblTHDN.Rows.Count; i++)
+            {
+                sumSoluongSP += Convert.ToInt32(tblTHDN.Rows[i][2]);
+            }
+            for (int i = 0; i < tblTHDN.Rows.Count; i++)
+            {
+                var value = tblTHDN.Rows[i][5].ToString();
+                if (!string.IsNullOrWhiteSpace(value))
+                    sumThanhtien += Convert.ToDecimal(value);
+
+            }
+            sumSp= tblTHDN.Rows.Count;
+            lblSoluongSP.Text = sumSoluongSP.ToString();
+            lblTongSP.Text = sumSp.ToString();
+            lblTongtien.Text = sumThanhtien.ToString();
+            lblBangchu.Text = Functions.ChuyenSoSangChu(sumThanhtien.ToString());
+            ResetValue();
+
+        }
+        private void ResetValue()
+        {
+            cboMaHH.Text = "";
+            txtTenHH.Text = "";
+            nudSoluong.Value = 0;
+            nudGiamgia.Value = 0;
+            txtDGN.Text = "0";
+            txtThanhtien.Text = "0";
+            cboMaHH.SelectedIndex = -1;
+            cboMaNCC.SelectedIndex = -1;
+            cboMaNV.SelectedIndex = -1;
+            txtTennv.Text = "";
+            txtTenNCC.Text = "";
+            txtDiachi.Text = "";
+            mskDienthoai.Text = ""; 
+            cboMaHH.Focus();
         }
     }
 }

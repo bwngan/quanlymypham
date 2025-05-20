@@ -69,6 +69,7 @@
             this.dataGridViewHDN.RowTemplate.Height = 24;
             this.dataGridViewHDN.Size = new System.Drawing.Size(853, 513);
             this.dataGridViewHDN.TabIndex = 0;
+            this.dataGridViewHDN.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewHDN_CellContentDoubleClick);
             // 
             // groupBox1
             // 

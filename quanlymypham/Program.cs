@@ -17,7 +17,7 @@ namespace quanlymypham
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formThemHDN());
+            Application.Run(new formDSHDN());
         }
     }
 }

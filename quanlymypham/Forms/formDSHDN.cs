@@ -24,6 +24,7 @@ namespace quanlymypham.Forms
             InitializeComponent();
         }
         DataTable tblHDN;
+       
         private void formDSHDN_Load(object sender, EventArgs e)
         {
             Load_dataGridViewHDN();
@@ -52,11 +53,25 @@ namespace quanlymypham.Forms
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-           
+
             // 1. Khởi tạo SQL
             string sql = "SELECT * FROM HoaDonNhap WHERE 1=1";
 
-            // 2. Thêm điều kiện SoHDN, MaNV, MaNCC nếu có
+            // 2. Kiểm tra nếu tất cả các trường đều trống thì báo lỗi
+            const string emptyMask = "  /  /";
+            if (string.IsNullOrWhiteSpace(txtSoHDN.Text)
+                && string.IsNullOrWhiteSpace(txtMaNV.Text)
+                && string.IsNullOrWhiteSpace(txtMaNCC.Text)
+                && string.IsNullOrWhiteSpace(txtKhoangbd.Text)
+                && string.IsNullOrWhiteSpace(txtKhoangkt.Text)
+                && mskNgaybd.Text == emptyMask
+                && mskNgaykt.Text == emptyMask)
+            {
+                MessageBox.Show("Bạn phải nhập ít nhất một điều kiện tìm kiếm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 3. Thêm điều kiện SoHDN, MaNV, MaNCC nếu có
             if (!string.IsNullOrWhiteSpace(txtSoHDN.Text))
                 sql += $" AND SoHDN LIKE N'%{txtSoHDN.Text}%'";
             if (!string.IsNullOrWhiteSpace(txtMaNV.Text))
@@ -64,7 +79,7 @@ namespace quanlymypham.Forms
             if (!string.IsNullOrWhiteSpace(txtMaNCC.Text))
                 sql += $" AND MaNCC LIKE N'%{txtMaNCC.Text}%'";
 
-            // 3. Tổng tiền
+            // 4. Tổng tiền
             bool hasMin = !string.IsNullOrWhiteSpace(txtKhoangbd.Text);
             bool hasMax = !string.IsNullOrWhiteSpace(txtKhoangkt.Text);
             if (hasMin && hasMax)
@@ -84,39 +99,38 @@ namespace quanlymypham.Forms
                 sql += $" AND TongTien <= {maxTien}";
             }
 
-            // 4. Ngày tạo
-            // MaskedTextBox rỗng mặc định là "  /  /" (copy nguyên text trên form)
-            const string emptyMask = "  /  /";
-            bool hasFromDate = mskNgaybd.Text != emptyMask;
-            bool hasToDate = mskNgaykt.Text != emptyMask;
+            // 5. Ngày tạo (KHÔNG bắt buộc)
+            bool hasFromDate = !string.IsNullOrWhiteSpace(mskNgaybd.Text) && mskNgaybd.Text != emptyMask;
+            bool hasToDate = !string.IsNullOrWhiteSpace(mskNgaykt.Text) && mskNgaykt.Text != emptyMask;
 
-            // 4.1 Validate format nếu có nhập
-            if (hasFromDate && !Functions.IsDate(mskNgaybd.Text))
+            // Chỉ kiểm tra nếu đã nhập đủ 10 ký tự (ví dụ: 28/04/2025)
+            if (hasFromDate && mskNgaybd.Text.Trim().Length == 10 && !Functions.IsDate(mskNgaybd.Text))
             {
                 MessageBox.Show("Bạn phải nhập đúng dd/MM/yyyy cho từ ngày", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (hasToDate && !Functions.IsDate(mskNgaykt.Text))
+            if (hasToDate && mskNgaykt.Text.Trim().Length == 10 && !Functions.IsDate(mskNgaykt.Text))
             {
                 MessageBox.Show("Bạn phải nhập đúng dd/MM/yyyy cho đến ngày", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 4.2 Parse
+
+            // 5.2 Parse ngày
             DateTime ngaybd = DateTime.MinValue, ngaykt = DateTime.MinValue;
             if (hasFromDate)
                 ngaybd = DateTime.ParseExact(mskNgaybd.Text, "dd/MM/yyyy", null);
             if (hasToDate)
                 ngaykt = DateTime.ParseExact(mskNgaykt.Text, "dd/MM/yyyy", null);
 
-            // 4.3 Kiểm tra thứ tự nếu cả hai đều nhập
+            // 5.3 Kiểm tra thứ tự nếu cả hai đều nhập
             if (hasFromDate && hasToDate && ngaybd >= ngaykt)
             {
                 MessageBox.Show("Từ ngày phải nhỏ hơn đến ngày", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 4.4 Nối vào SQL
+            // 5.4 Nối điều kiện ngày vào SQL nếu có nhập ngày
             if (hasFromDate && hasToDate)
             {
                 sql += $" AND NgayNhap BETWEEN '{ngaybd:yyyy-MM-dd}' AND '{ngaykt:yyyy-MM-dd}'";
@@ -130,7 +144,7 @@ namespace quanlymypham.Forms
                 sql += $" AND NgayNhap <= '{ngaykt:yyyy-MM-dd}'";
             }
 
-            // 5. Thực thi và bind
+            // 6. Thực thi và bind
             tblHDN = Functions.GetDataToTable(sql);
             dataGridViewHDN.DataSource = tblHDN;
             lblTongHD.Text = "Số Lượng Hóa Đơn: " + tblHDN.Rows.Count;
@@ -143,14 +157,13 @@ namespace quanlymypham.Forms
                 MessageBoxButtons.OK,
                 tblHDN.Rows.Count == 0 ? MessageBoxIcon.Information : MessageBoxIcon.Information
             );
-        
-   
+
+
         }
 
         private void formDSHDN_DoubleClick(object sender, EventArgs e)
         {
-            formChitietHDN a = new formChitietHDN();
-            a.Show();
+            
         }
 
         private void btnTaoHDN_Click(object sender, EventArgs e)
@@ -261,6 +274,13 @@ namespace quanlymypham.Forms
         {
             this.Close();
             var main = Application.OpenForms.OfType<GD_Chinh>().FirstOrDefault();
+        }
+
+        private void dataGridViewHDN_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string SoHDN = dataGridViewHDN.CurrentRow.Cells[0].Value.ToString();
+            formChitietHDN frm = new formChitietHDN(SoHDN);
+            frm.Show();
         }
     }
    }
