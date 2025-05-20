@@ -49,7 +49,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewdssp = new System.Windows.Forms.DataGridView();
             this.lblTongSP = new System.Windows.Forms.Label();
             this.lblSoluongSP = new System.Windows.Forms.Label();
             this.lblTongtien = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewdssp)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -255,15 +255,15 @@
             this.label10.TabIndex = 2;
             this.label10.Text = "Danh Sách Sản Phẩm";
             // 
-            // dataGridView1
+            // dataGridViewdssp
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(35, 310);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(795, 311);
-            this.dataGridView1.TabIndex = 3;
+            this.dataGridViewdssp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewdssp.Location = new System.Drawing.Point(35, 310);
+            this.dataGridViewdssp.Name = "dataGridViewdssp";
+            this.dataGridViewdssp.RowHeadersWidth = 51;
+            this.dataGridViewdssp.RowTemplate.Height = 24;
+            this.dataGridViewdssp.Size = new System.Drawing.Size(795, 311);
+            this.dataGridViewdssp.TabIndex = 3;
             // 
             // lblTongSP
             // 
@@ -340,7 +340,7 @@
             this.Controls.Add(this.lblTongtien);
             this.Controls.Add(this.lblSoluongSP);
             this.Controls.Add(this.lblTongSP);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewdssp);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
@@ -353,7 +353,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewdssp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -374,7 +374,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewdssp;
         private System.Windows.Forms.Label lblTongSP;
         private System.Windows.Forms.Label lblSoluongSP;
         private System.Windows.Forms.Label lblTongtien;
