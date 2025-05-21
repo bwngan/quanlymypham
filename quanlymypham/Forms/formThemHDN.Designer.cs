@@ -33,8 +33,6 @@
             this.btnXoasp = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnBoqua1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cboMaHH = new System.Windows.Forms.ComboBox();
             this.nudGiamgia = new System.Windows.Forms.NumericUpDown();
@@ -77,6 +75,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnBoqua1 = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudGiamgia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoluong)).BeginInit();
@@ -115,7 +115,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Location = new System.Drawing.Point(1115, 302);
+            this.btnSua.Location = new System.Drawing.Point(1218, 531);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 23);
             this.btnSua.TabIndex = 45;
@@ -131,24 +131,6 @@
             this.btnThem.Text = "Thêm ";
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1214, 259);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 43;
-            this.button1.Text = "Bỏ qua";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnBoqua1
-            // 
-            this.btnBoqua1.Location = new System.Drawing.Point(1180, 120);
-            this.btnBoqua1.Name = "btnBoqua1";
-            this.btnBoqua1.Size = new System.Drawing.Size(75, 23);
-            this.btnBoqua1.TabIndex = 42;
-            this.btnBoqua1.Text = "Bỏ qua";
-            this.btnBoqua1.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -538,6 +520,24 @@
             this.label1.TabIndex = 30;
             this.label1.Text = "HÓA ĐƠN NHẬP HÀNG";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1214, 259);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 43;
+            this.button1.Text = "Bỏ qua";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnBoqua1
+            // 
+            this.btnBoqua1.Location = new System.Drawing.Point(1180, 120);
+            this.btnBoqua1.Name = "btnBoqua1";
+            this.btnBoqua1.Size = new System.Drawing.Size(75, 23);
+            this.btnBoqua1.TabIndex = 42;
+            this.btnBoqua1.Text = "Bỏ qua";
+            this.btnBoqua1.UseVisualStyleBackColor = true;
+            // 
             // formThemHDN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -588,8 +588,6 @@
         private System.Windows.Forms.Button btnXoasp;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnBoqua1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox cboMaHH;
         private System.Windows.Forms.NumericUpDown nudGiamgia;
@@ -632,5 +630,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBoqua1;
     }
 }
