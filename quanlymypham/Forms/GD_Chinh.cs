@@ -16,6 +16,9 @@ namespace quanlymypham.Forms
         formNCC ncc;
         formSanPham sanpham;
         formKhachHang khachhang;
+        formDSHDB dshdb;
+        formThemHDB themhdb;
+        
 
         public GD_Chinh()
         {
@@ -234,8 +237,7 @@ namespace quanlymypham.Forms
             {
                 sanpham.BringToFront();
             }
-            ResetMenuHighlight();
-            btnsanpham.BackColor = Color.SteelBlue;
+            
         }
         private void ResetMenuHighlight()
         {
@@ -262,16 +264,47 @@ namespace quanlymypham.Forms
             {
                 khachhang.BringToFront();
             }
-            ResetMenuHighlight();
-            btnkhachhang.BackColor = Color.SteelBlue;
+           
         }
-        public void HighlightKhachHangMenu()
+       
+
+        private void btntaoHD_Click(object sender, EventArgs e)
         {
-            btnkhachhang.BackColor = Color.SteelBlue;
+            if (themhdb == null || themhdb.IsDisposed)
+            {
+                themhdb = new formThemHDB();
+                themhdb.TopLevel = false;
+                themhdb.FormBorderStyle = FormBorderStyle.None;
+                themhdb.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(themhdb);
+                themhdb.Show();
+            }
+            else
+            {
+                themhdb.BringToFront();
+            }
+            
         }
-        public void HighlightSanPhamMenu()
+
+        private void btndanhsachHD_Click(object sender, EventArgs e)
         {
-            btnsanpham.BackColor = Color.SteelBlue;
+            if (dshdb == null || dshdb.IsDisposed)
+            {
+                dshdb = new formDSHDB();
+                dshdb.TopLevel = false;
+                dshdb.FormBorderStyle = FormBorderStyle.None;
+                dshdb.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(dshdb);
+                dshdb.Show();
+            }
+            else
+            {
+                dshdb.BringToFront();
+            }
+          
         }
+
     }
 }

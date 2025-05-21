@@ -87,6 +87,12 @@
     <Compile Include="Forms\formChitietHDN.Designer.cs">
       <DependentUpon>formChitietHDN.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\formDSHDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\formDSHDB.Designer.cs">
+      <DependentUpon>formDSHDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\formDSHDN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,12 @@
     </Compile>
     <Compile Include="Forms\formSanPham.Designer.cs">
       <DependentUpon>formSanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\formThemHDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\formThemHDB.Designer.cs">
+      <DependentUpon>formThemHDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\formThemHDN.cs">
       <SubType>Form</SubType>
@@ -150,6 +162,9 @@
     <EmbeddedResource Include="Forms\formChitietHDN.resx">
       <DependentUpon>formChitietHDN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formDSHDB.resx">
+      <DependentUpon>formDSHDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\formDSHDN.resx">
       <DependentUpon>formDSHDN.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formSanPham.resx">
       <DependentUpon>formSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formThemHDB.resx">
+      <DependentUpon>formThemHDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formThemHDN.resx">
       <DependentUpon>formThemHDN.cs</DependentUpon>

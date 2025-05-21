@@ -16,7 +16,7 @@ namespace quanlymypham
         public static string connString;
         public static void Connect()
         {
-            connString = @"Data Source=MSI\NGAN;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
+            connString = "Data Source=ADMIN-PC\\THU;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
             conn = new SqlConnection();
             conn.ConnectionString = connString;
             if (conn.State == ConnectionState.Closed)
@@ -243,6 +243,15 @@ namespace quanlymypham
             mTemp = mTemp.Trim();
             // Viết hoa ký tự đầu tiên
             mTemp = mTemp.Substring(0, 1).ToUpper() + mTemp.Substring(1) + " đồng";
+            mTemp = System.Text.RegularExpressions.Regex.Replace(mTemp, @"\s+", " ");
+            foreach (var u in new[] { "tỷ", "triệu", "nghìn", "trăm", "mươi", "đồng" })
+            {
+                mTemp = mTemp.Replace(u, u + " ");
+            }
+            mTemp = System.Text.RegularExpressions.Regex.Replace(mTemp.Trim(), @"\s+", " ");
+            if (!mTemp.EndsWith("đồng", StringComparison.OrdinalIgnoreCase))
+                mTemp += " đồng";
+
             return mTemp;
         }
 
