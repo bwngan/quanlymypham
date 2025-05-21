@@ -31,6 +31,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btndong = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.mskngaykt = new System.Windows.Forms.MaskedTextBox();
+            this.mskngaybd = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnxuatDS = new System.Windows.Forms.Button();
@@ -51,8 +53,6 @@
             this.txtsoHDB = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridViewHDB = new System.Windows.Forms.DataGridView();
-            this.mskngaybd = new System.Windows.Forms.MaskedTextBox();
-            this.mskngaykt = new System.Windows.Forms.MaskedTextBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,6 +77,7 @@
             this.btndong.TabIndex = 17;
             this.btndong.Text = "Đóng";
             this.btndong.UseVisualStyleBackColor = true;
+            this.btndong.Click += new System.EventHandler(this.btndong_Click);
             // 
             // groupBox3
             // 
@@ -92,6 +93,24 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ngày Tạo";
+            // 
+            // mskngaykt
+            // 
+            this.mskngaykt.Location = new System.Drawing.Point(134, 88);
+            this.mskngaykt.Mask = "00/00/0000";
+            this.mskngaykt.Name = "mskngaykt";
+            this.mskngaykt.Size = new System.Drawing.Size(147, 26);
+            this.mskngaykt.TabIndex = 6;
+            this.mskngaykt.ValidatingType = typeof(System.DateTime);
+            // 
+            // mskngaybd
+            // 
+            this.mskngaybd.Location = new System.Drawing.Point(134, 37);
+            this.mskngaybd.Mask = "00/00/0000";
+            this.mskngaybd.Name = "mskngaybd";
+            this.mskngaybd.Size = new System.Drawing.Size(147, 26);
+            this.mskngaybd.TabIndex = 5;
+            this.mskngaybd.ValidatingType = typeof(System.DateTime);
             // 
             // label7
             // 
@@ -120,6 +139,7 @@
             this.btnxuatDS.TabIndex = 16;
             this.btnxuatDS.Text = "Xuất Danh Sách";
             this.btnxuatDS.UseVisualStyleBackColor = true;
+            this.btnxuatDS.Click += new System.EventHandler(this.btnxuatDS_Click);
             // 
             // btntaohoadonmoi
             // 
@@ -141,6 +161,7 @@
             this.btnboqua.TabIndex = 14;
             this.btnboqua.Text = "Bỏ Qua";
             this.btnboqua.UseVisualStyleBackColor = true;
+            this.btnboqua.Click += new System.EventHandler(this.btnboqua_Click);
             // 
             // btntimkiem
             // 
@@ -151,6 +172,7 @@
             this.btntimkiem.TabIndex = 13;
             this.btntimkiem.Text = "Tìm Kiếm ";
             this.btntimkiem.UseVisualStyleBackColor = true;
+            this.btntimkiem.Click += new System.EventHandler(this.btntimkiem_Click);
             // 
             // groupBox2
             // 
@@ -290,24 +312,7 @@
             this.dataGridViewHDB.RowTemplate.Height = 24;
             this.dataGridViewHDB.Size = new System.Drawing.Size(960, 641);
             this.dataGridViewHDB.TabIndex = 11;
-            // 
-            // mskngaybd
-            // 
-            this.mskngaybd.Location = new System.Drawing.Point(134, 37);
-            this.mskngaybd.Mask = "00/00/0000";
-            this.mskngaybd.Name = "mskngaybd";
-            this.mskngaybd.Size = new System.Drawing.Size(147, 26);
-            this.mskngaybd.TabIndex = 5;
-            this.mskngaybd.ValidatingType = typeof(System.DateTime);
-            // 
-            // mskngaykt
-            // 
-            this.mskngaykt.Location = new System.Drawing.Point(134, 88);
-            this.mskngaykt.Mask = "00/00/0000";
-            this.mskngaykt.Name = "mskngaykt";
-            this.mskngaykt.Size = new System.Drawing.Size(147, 26);
-            this.mskngaykt.TabIndex = 6;
-            this.mskngaykt.ValidatingType = typeof(System.DateTime);
+            this.dataGridViewHDB.DoubleClick += new System.EventHandler(this.dataGridViewHDB_DoubleClick);
             // 
             // formDSHDB
             // 

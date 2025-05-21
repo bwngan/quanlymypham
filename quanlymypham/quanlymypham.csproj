@@ -137,6 +137,9 @@
     <EmbeddedResource Include="Forms\Dangky.resx">
       <DependentUpon>Dangky.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formChitietHDB.resx">
+      <DependentUpon>formChitietHDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\formChitietHDN.resx">
       <DependentUpon>formChitietHDN.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formSanPham.resx">
       <DependentUpon>formSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formThemHDB.resx">
+      <DependentUpon>formThemHDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formThemHDN.resx">
       <DependentUpon>formThemHDN.cs</DependentUpon>
