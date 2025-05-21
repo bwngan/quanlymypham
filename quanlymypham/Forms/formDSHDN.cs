@@ -201,7 +201,7 @@ namespace quanlymypham.Forms
             worksheet.Cells[1, 1].Font.Color = Color.Blue;
             worksheet.Cells[2, 1] = "Địa chỉ: 12 Chùa Bộc, Quang Trung, Đống Đa, Hà Nội";
             worksheet.Cells[2, 1].Font.Color = Color.Blue;
-            worksheet.Cells[3, 1] = "Số điện thoại: 097 114 0994";
+            worksheet.Cells[3, 1] = "Số điện thoại: 086 984 5994";
             worksheet.Cells[3, 1].Font.Color = Color.Blue;
 
             // 3) Gộp ô và tạo dòng tiêu đề chính
