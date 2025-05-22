@@ -19,7 +19,7 @@ namespace quanlymypham.Forms
 {
     public partial class formBaocaoSP : Form
     {
-        DataTable tblSanPham, tblBanChay;
+        DataTable tblSanPham;
         public formBaocaoSP()
         {
             InitializeComponent();

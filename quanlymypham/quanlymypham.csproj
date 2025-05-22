@@ -81,6 +81,12 @@
     <Compile Include="Forms\formBaocaoSP.Designer.cs">
       <DependentUpon>formBaocaoSP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\formChitietHDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\formChitietHDB.Designer.cs">
+      <DependentUpon>formChitietHDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\formChitietHDN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formBaocaoSP.resx">
       <DependentUpon>formBaocaoSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\formChitietHDB.resx">
+      <DependentUpon>formChitietHDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\formChitietHDN.resx">
       <DependentUpon>formChitietHDN.cs</DependentUpon>

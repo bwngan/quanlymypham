@@ -16,8 +16,14 @@ namespace quanlymypham.Forms
         formNCC ncc;
         formSanPham sanpham;
         formKhachHang khachhang;
+        formDSHDN dshdn;
+        formThemHDN themhdn;
         formDSHDB dshdb;
         formThemHDB themhdb;
+        formBaocaoDT baocaoDT;
+        formBaocaoNV baocaoNV;
+        formBaocaoSP baocaoSP;
+       
         
 
         public GD_Chinh()
@@ -306,5 +312,95 @@ namespace quanlymypham.Forms
           
         }
 
+        private void btnDshoadon_Click(object sender, EventArgs e)
+        {
+            if (dshdn == null || dshdn.IsDisposed)
+            {
+                dshdn = new formDSHDN();
+                dshdn.TopLevel = false;
+                dshdn.FormBorderStyle = FormBorderStyle.None;
+                dshdn.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(dshdn);
+                dshdn.Size = panelContent.ClientSize;
+                dshdn.Show();
+            }
+            else
+            {
+                dshdn.BringToFront();
+            }
+        }
+
+        private void btnTaohoadon_Click(object sender, EventArgs e)
+        {
+            if(themhdn == null || themhdn.IsDisposed)
+            {
+                themhdn = new formThemHDN();
+                themhdn.TopLevel = false;
+                themhdn.FormBorderStyle = FormBorderStyle.None;
+                themhdn.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(themhdn);
+                themhdn.Show();
+            }
+            else
+            {
+                themhdn.BringToFront();
+            }
+        }
+
+        private void btnBCKD_Click(object sender, EventArgs e)
+        {
+            if(baocaoDT == null || baocaoDT.IsDisposed)
+            {
+                baocaoDT = new formBaocaoDT();
+                baocaoDT.TopLevel = false;
+                baocaoDT.FormBorderStyle = FormBorderStyle.None;
+                baocaoDT.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(baocaoDT);
+                baocaoDT.Show();
+            }
+            else
+            {
+                baocaoDT.BringToFront();
+            }
+        }
+
+        private void btnBCNV_Click(object sender, EventArgs e)
+        {
+            if(baocaoNV == null || baocaoNV.IsDisposed)
+            {
+                baocaoNV = new formBaocaoNV();
+                baocaoNV.TopLevel = false;
+                baocaoNV.FormBorderStyle = FormBorderStyle.None;
+                baocaoNV.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(baocaoNV);
+                baocaoNV.Show();
+            }
+            else
+            {
+                baocaoNV.BringToFront();
+            }
+        }
+
+        private void btnBCSP_Click(object sender, EventArgs e)
+        {
+            if(baocaoSP == null || baocaoSP.IsDisposed)
+            {
+                baocaoSP = new formBaocaoSP();
+                baocaoSP.TopLevel = false;
+                baocaoSP.FormBorderStyle = FormBorderStyle.None;
+                baocaoSP.Dock = DockStyle.Fill;
+                panelContent.Controls.Clear();
+                panelContent.Controls.Add(baocaoSP);
+                baocaoSP.Show();
+            }
+            else
+            {
+                baocaoSP.BringToFront();
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace quanlymypham
         public static string connString;
         public static void Connect()
         {
-            connString = "Data Source=ADMIN-PC\\THU;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
+            connString = "Data Source=MSI\\NGAN;Initial Catalog=quanlymypham;Integrated Security=True;Encrypt=False";
             conn = new SqlConnection();
             conn.ConnectionString = connString;
             if (conn.State == ConnectionState.Closed)
@@ -253,6 +253,12 @@ namespace quanlymypham
                 mTemp += " đồng";
 
             return mTemp;
+        }
+        public static string ConvertDateTime(string d)
+        {
+            string[] parts = d.Split('/');
+            string dt = String.Format("{0}/{1}/{2}", parts[1], parts[0], parts[2]);
+            return dt;
         }
 
 

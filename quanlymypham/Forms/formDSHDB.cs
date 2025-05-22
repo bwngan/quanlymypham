@@ -47,8 +47,6 @@ namespace quanlymypham.Forms
 
         private void formDSHDB_DoubleClick(object sender, EventArgs e)
         {
-            formChitietHDB a = new formChitietHDB();
-            a.Show();
         }
 
         private void btntaohoadonmoi_Click(object sender, EventArgs e)
@@ -65,12 +63,10 @@ namespace quanlymypham.Forms
             
             if (dataGridViewHDB.CurrentRow == null) return;
             string soHDB = dataGridViewHDB.CurrentRow.Cells["SoHDB"].Value.ToString();
-
             var frm = new formChitietHDB();
-            frm.SoHDB = soHDB;
-
+            frm.Tag = soHDB;
             frm.ShowDialog();
-            
+
         }
 
         private void btntimkiem_Click(object sender, EventArgs e)
@@ -130,22 +126,17 @@ namespace quanlymypham.Forms
             if (mskngaykt.Text != " / /")
                 ngaykt = Convert.ToDateTime(mskngaykt.Text);
 
-            // Tạo câu lệnh cơ bản
             sql = "SELECT * FROM HoaDonBan WHERE 1=1";
 
-            // Thêm điều kiện theo SoHDB
             if (!string.IsNullOrEmpty(txtsoHDB.Text.Trim()))
                 sql += " AND SoHDB LIKE N'%" + txtsoHDB.Text.Trim() + "%'";
 
-            // Thêm điều kiện theo MaNV
             if (!string.IsNullOrEmpty(txtmanhanvien.Text.Trim()))
                 sql += " AND MaNV = N'" + txtmanhanvien.Text.Trim() + "'";
 
-            // Thêm điều kiện theo MaKhach
             if (!string.IsNullOrEmpty(txtmakhachhang.Text.Trim()))
                 sql += " AND MaKhach = N'" + txtmakhachhang.Text.Trim() + "'";
 
-            // Thêm điều kiện khoảng tiền
             if (!string.IsNullOrEmpty(txtkhoangbd.Text.Trim()) &&
                 !string.IsNullOrEmpty(txtkhoangkt.Text.Trim()))
             {
@@ -154,7 +145,6 @@ namespace quanlymypham.Forms
                 sql += $" AND TongTien BETWEEN {bd} AND {kt}";
             }
 
-            // Thêm điều kiện khoảng ngày
             if (mskngaybd.Text != " / /" && mskngaykt.Text != " / /")
             {
                 sql += " AND Ngayban BETWEEN '"
@@ -163,11 +153,9 @@ namespace quanlymypham.Forms
                      + ngaykt.ToString("yyyy-MM-dd") + "'";
             }
 
-            // Lấy data và binding
             tblDSHDB = Functions.GetDataToTable(sql);
             dataGridViewHDB.DataSource = tblDSHDB;
 
-            // Thông báo kết quả
             if (tblDSHDB.Rows.Count == 0)
                 MessageBox.Show("Không có bản ghi thoả mãn điều kiện", "Thông báo",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);

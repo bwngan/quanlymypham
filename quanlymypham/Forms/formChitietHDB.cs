@@ -2,27 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Excel = Microsoft.Office.Interop.Excel;
-
-
 
 namespace quanlymypham.Forms
 {
-
     public partial class formChitietHDB : Form
     {
-        public event EventHandler HoaDonDaXoa;
-
-        public string SoHDB { get; set; }
-
+        public event EventHandler HoaDonDaXoa ;
+        public static string SoHDB = "";
         public formChitietHDB()
         {
             InitializeComponent();
@@ -33,20 +25,18 @@ namespace quanlymypham.Forms
             Functions.Connect();
             Load_ThongtinHDB();
             Load_DS();
-            txtsoHDB.ReadOnly = true;
-            txtmaNV.ReadOnly = true;
-            txttenNV.ReadOnly = true;
-            txtmaKH.ReadOnly = true;
-            txttenKH.ReadOnly = true;
-            txtdiachi.ReadOnly = true;
-            mskdienthoai.ReadOnly = true;
-            dtpngayban.Enabled = false;
+            txtSoHDB.ReadOnly = true;
+            txtTennv.ReadOnly = true;
+            txtTenKH.ReadOnly = true;
+            txtDiachi.ReadOnly = true;
+            mskDienthoai.ReadOnly = true;
+            dtpNgayban.Enabled = false;
 
         }
         private void Load_ThongtinHDB()
         {
 
-            txtsoHDB.Text = SoHDB;
+            txtSoHDB.Text = SoHDB;
             string sql = @"SELECT HoaDonBan.SoHDB, HoaDonBan.NgayBan, NhanVien.MaNV, Nhanvien.TenNV, KhachHang.MaKhach, KhachHang.TenKhach, KhachHang.DiaChi, KhachHang.DienThoai FROM HoaDonBan 
                            INNER JOIN NhanVien ON HoaDonBan.MaNV = NhanVien.MaNV
                            INNER JOIN KhachHang ON HoaDonBan.MaKhach = KhachHang.MaKhach
@@ -57,36 +47,37 @@ namespace quanlymypham.Forms
             {
                 DataRow r = dt.Rows[0];
 
-                txtsoHDB.Text = r["SoHDB"].ToString();
-                dtpngayban.Value = Convert.ToDateTime(r["NgayBan"]);
-                txtmaNV.Text = r["MaNV"].ToString();
-                txttenNV.Text = r["TenNV"].ToString();
-                txtmaKH.Text = r["MaKhach"].ToString();
-                txttenKH.Text = r["TenKhach"].ToString();
-                txtdiachi.Text = r["DiaChi"].ToString();
-                mskdienthoai.Text = r["DienThoai"].ToString();
+                txtSoHDB.Text = r["SoHDB"].ToString();
+                dtpNgayban.Value = Convert.ToDateTime(r["NgayBan"]);
+                cboMaNV.Text = r["MaNV"].ToString();
+                txtTennv.Text = r["TenNV"].ToString();
+                cboMaKH.Text = r["MaKhach"].ToString();
+                txtTenKH.Text = r["TenKhach"].ToString();
+                txtDiachi.Text = r["DiaChi"].ToString();
+                mskDienthoai.Text = r["DienThoai"].ToString();
             }
-            
+
         }
         private void ResetValues()
         {
-            txtsoHDB.Text = Functions.CreateKey("HDB");
-            dtpngayban.Text = DateTime.Now.ToShortDateString();
-            txtsoHDB.Text = "";
-            txtmaNV.Text = "";
-            txttenNV.Text = "";
-            txtmaKH.Text = "";
-            txttenKH.Text = "";
-            txtdiachi.Text = "";
-            mskdienthoai.Text = "";
+            txtSoHDB.Text = Functions.CreateKey("HDB");
+            dtpNgayban.Text = DateTime.Now.ToShortDateString();
+            txtSoHDB.Text = "";
+            cboMaNV.Text = "";
+            txtTennv.Text = "";
+            cboMaKH.Text = "";
+            txtTenKH.Text = "";
+            txtDiachi.Text = "";
+            mskDienthoai.Text = "";
             btnIn.Enabled = false;
             btnXoa.Enabled = false;
             DS.Clear();
             lblBangchu.Text = "Tổng tiền(Bằng chữ): ";
-            lblSoluongSP.Text = "Số lượng sản phẩm: ";
-            lblTongSP.Text = "Số sản phẩm:";
+            lblSoluongSP.Text = "Tổng số lượng sản phẩm: ";
+            lblTongSP.Text = " Tổng số sản phẩm:";
             lblTongtien.Text = "Tổng tiền:";
         }
+
         private void Load_DS()
         {
             string sql;
@@ -94,31 +85,31 @@ namespace quanlymypham.Forms
                       FROM HangHoa INNER JOIN ChiTietHoaDonBan ON HangHoa.MaHang=ChiTietHoaDonBan.MaHang
                       WHERE ChiTietHoaDonBan.SoHDB = '" + SoHDB + "'";
             DataTable dt = Functions.GetDataToTable(sql);
-            dataGridViewDSSP.DataSource = dt;
+            dataGridViewdssp.DataSource = dt;
             DS = dt;
 
-            dataGridViewDSSP.Columns[0].HeaderText = "Mã Hàng";
-            dataGridViewDSSP.Columns[1].HeaderText = "Tên Hàng";
-            dataGridViewDSSP.Columns[2].HeaderText = "Số Lượng";
-            dataGridViewDSSP.Columns[3].HeaderText = "Giảm Giá (%)";
-            dataGridViewDSSP.Columns[4].HeaderText = "Thành Tiền";
-            dataGridViewDSSP.Columns[0].Width = 100;
-            dataGridViewDSSP.Columns[1].Width = 150;
-            dataGridViewDSSP.Columns[2].Width = 100;
-            dataGridViewDSSP.Columns[3].Width = 100;
-            dataGridViewDSSP.Columns[4].Width = 120;
-            dataGridViewDSSP.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dataGridViewdssp.Columns[0].HeaderText = "Mã Hàng";
+            dataGridViewdssp.Columns[1].HeaderText = "Tên Hàng";
+            dataGridViewdssp.Columns[2].HeaderText = "Số Lượng";
+            dataGridViewdssp.Columns[3].HeaderText = "Giảm Giá (%)";
+            dataGridViewdssp.Columns[4].HeaderText = "Thành Tiền";
+            dataGridViewdssp.Columns[0].Width = 100;
+            dataGridViewdssp.Columns[1].Width = 150;
+            dataGridViewdssp.Columns[2].Width = 100;
+            dataGridViewdssp.Columns[3].Width = 100;
+            dataGridViewdssp.Columns[4].Width = 120;
+            dataGridViewdssp.EditMode = DataGridViewEditMode.EditProgrammatically;
 
             int sumSoluongSp = 0;
             int sumSp = DS.Rows.Count;
             decimal sumTongtien = 0;
-            for( int i=0; i<DS.Rows.Count; i++)
+            for (int i = 0; i < DS.Rows.Count; i++)
             {
                 sumSoluongSp += Convert.ToInt32(DS.Rows[i]["SoLuong"]);
                 sumTongtien += Convert.ToDecimal(DS.Rows[i]["ThanhTien"]);
             }
-            lblSoluongSP.Text = "Số lượng sản phẩm:" + sumSoluongSp;
-            lblTongSP.Text = "Số sản phẩm:" + sumSp;
+            lblSoluongSP.Text = "Tổng số lượng sản phẩm:" + sumSoluongSp;
+            lblTongSP.Text = "Tổng số sản phẩm:" + sumSp;
             lblTongtien.Text = "Tổng tiền:" + sumTongtien;
             lblBangchu.Text = "Tổng tiền (Bằng chữ):" + Functions.ChuyenSoSangChu(sumTongtien.ToString());
 
@@ -127,10 +118,10 @@ namespace quanlymypham.Forms
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Bạn có chắc chắn muốn xoá hoá đơn này không","Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)== DialogResult.OK)
+            if (MessageBox.Show("Bạn có chắc chắn muốn xoá hoá đơn này không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                string sql = "DELETE FROM HoaDonBan WHERE SoHDB = N'" + txtsoHDB.Text + "'";
-                string sqlCT = "DELETE FROM ChiTietHoaDonBan WHERE SoHDB = N'" + txtsoHDB.Text + "'";
+                string sql = "DELETE FROM HoaDonBan WHERE SoHDB = N'" + txtSoHDB.Text + "'";
+                string sqlCT = "DELETE FROM ChiTietHoaDonBan WHERE SoHDB = N'" + txtSoHDB.Text + "'";
                 Functions.RunSql(sql);
                 Functions.RunSql(sqlCT);
                 foreach (DataRow row in DS.Rows)
@@ -141,13 +132,12 @@ namespace quanlymypham.Forms
                     Functions.RunSql(sql);
                 }
                 ResetValues();
-                if(HoaDonDaXoa != null)
+                if (HoaDonDaXoa != null)
                 {
                     HoaDonDaXoa(this, EventArgs.Empty);
                     this.Close();
-                }    
-            }    
-
+                }
+            }
         }
 
         private void btnIn_Click(object sender, EventArgs e)
@@ -170,36 +160,36 @@ namespace quanlymypham.Forms
             mergeRange.Font.Size = 18;
             mergeRange.Font.Color = Color.Red;
             worksheet.Cells[7, 2] = "Số hoá đơn bán";
-            worksheet.Cells[7, 3] = txtsoHDB.Text;
+            worksheet.Cells[7, 3] = txtSoHDB.Text;
             worksheet.Cells[8, 2] = "Ngày bán";
-            worksheet.Cells[8, 3] = dtpngayban.Value;
+            worksheet.Cells[8, 3] = dtpNgayban.Value;
             worksheet.Cells[8, 3].HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
             worksheet.Cells[7, 7] = "Khách hàng";
-            worksheet.Cells[7, 8] = txttenKH;
+            worksheet.Cells[7, 8] = txtTenKH;
             worksheet.Cells[8, 7] = "Số điện thoại";
-            worksheet.Cells[8, 8] = mskdienthoai.Text;
+            worksheet.Cells[8, 8] = mskDienthoai.Text;
             worksheet.Cells[9, 7] = "Địa chỉ";
-            worksheet.Cells[9, 8] = txtdiachi.Text;
+            worksheet.Cells[9, 8] = txtDiachi.Text;
             worksheet.Cells[9, 2] = "Nhân viên";
-            worksheet.Cells[9, 3] = txttenNV.Text;
+            worksheet.Cells[9, 3] = txtTennv.Text;
             worksheet.Cells[11, 2] = "STT";
             worksheet.Cells[11, 2].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
             worksheet.Cells[11, 2].Borders.Weight = Excel.XlBorderWeight.xlThin;
             worksheet.Cells[11, 2].Interior.Color = Color.LightYellow;
             worksheet.Cells[11, 2].Font.Size = 12;
             worksheet.Cells[11, 2].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-            for ( int i=1; i<= dataGridViewDSSP.Columns.Count; i++)
+            for (int i = 1; i <= dataGridViewdssp.Columns.Count; i++)
             {
                 worksheet.Cells[11, i + 2].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                 worksheet.Cells[11, i + 2].Borders.Weight = Excel.XlBorderWeight.xlThin;
-                worksheet.Cells[11, i + 2].Value = dataGridViewDSSP.Columns[i-1].HeaderText;
+                worksheet.Cells[11, i + 2].Value = dataGridViewdssp.Columns[i - 1].HeaderText;
                 worksheet.Cells[11, i + 2].Interior.Color = Color.LightYellow;
                 worksheet.Cells[11, i + 2].Font.Size = 12;
-                worksheet.Cells[11, i + 2].EntireColumn.AutoFit() ;
+                worksheet.Cells[11, i + 2].EntireColumn.AutoFit();
                 worksheet.Cells[11, i + 2].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
 
             }
-            for (int i = 0; i < dataGridViewDSSP.Rows.Count; i++)
+            for (int i = 0; i < dataGridViewdssp.Rows.Count; i++)
             {
                 worksheet.Cells[i + 12, 2].Value = i + 1;
                 worksheet.Cells[i + 12, 2].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
@@ -207,10 +197,10 @@ namespace quanlymypham.Forms
                 worksheet.Cells[i + 12, 2].Font.Size = 12;
                 worksheet.Cells[i + 12, 2].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
             }
-            for (int j = 0; j < dataGridViewDSSP.Columns.Count; j++)
-                for (int i = 0; i < dataGridViewDSSP.Rows.Count; i++)
+            for (int j = 0; j < dataGridViewdssp.Columns.Count; j++)
+                for (int i = 0; i < dataGridViewdssp.Rows.Count; i++)
                 {
-                    worksheet.Cells[i + 12, j + 3].Value = dataGridViewDSSP.Rows[i].Cells[j].Value?.ToString();
+                    worksheet.Cells[i + 12, j + 3].Value = dataGridViewdssp.Rows[i].Cells[j].Value?.ToString();
                     worksheet.Cells[i + 12, j + 3].Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
                     worksheet.Cells[i + 12, j + 3].Borders.Weight = Excel.XlBorderWeight.xlThin;
                     worksheet.Cells[i + 12, j + 3].Font.Size = 12;
@@ -218,20 +208,21 @@ namespace quanlymypham.Forms
                     worksheet.Cells[i + 12, j + 3].HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
 
                 }
-            worksheet.Cells[(dataGridViewDSSP.Rows.Count + 12) + 2, 8] = lblSoluongSP.Text;
-            worksheet.Cells[(dataGridViewDSSP.Rows.Count + 12) + 3, 8] = lblTongSP.Text;
-            worksheet.Cells[(dataGridViewDSSP.Rows.Count + 12) + 4, 8] = lblTongtien.Text;
-            worksheet.Cells[(dataGridViewDSSP.Rows.Count + 12) + 5, 8] = lblBangchu.Text;
-            worksheet.Cells[(dataGridViewDSSP.Rows.Count + 12) + 8, 6] = "Hà Nội, Ngay " + dtpngayban.Value.Day + ", tháng " + dtpngayban.Value.Month + ", năm" + dtpngayban.Value.Year;
+            worksheet.Cells[(dataGridViewdssp.Rows.Count + 12) + 2, 8] = lblSoluongSP.Text;
+            worksheet.Cells[(dataGridViewdssp.Rows.Count + 12) + 3, 8] = lblTongSP.Text;
+            worksheet.Cells[(dataGridViewdssp.Rows.Count + 12) + 4, 8] = lblTongtien.Text;
+            worksheet.Cells[(dataGridViewdssp.Rows.Count + 12) + 5, 8] = lblBangchu.Text;
+            worksheet.Cells[(dataGridViewdssp.Rows.Count + 12) + 8, 6] = "Hà Nội, Ngay " + dtpNgayban.Value.Day + ", tháng " + dtpNgayban.Value.Month + ", năm" + dtpNgayban.Value.Year;
             excelApp.ScreenUpdating = true;
             excelApp.Visible = true;
+
         }
 
         private void btnDong_Click(object sender, EventArgs e)
         {
             this.Close();
             var main = Application.OpenForms.OfType<GD_Chinh>().FirstOrDefault();
+
         }
     }
-    
 }

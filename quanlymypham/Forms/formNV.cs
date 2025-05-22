@@ -150,29 +150,33 @@ namespace quanlymypham.Forms
                 cbNam.Focus();
                 return;
             }
-            var dt = DateTime.ParseExact(mskNgaysinh.Text, "dd/MM/yyyy", null);
-            string sIso = dt.ToString("yyyy-MM-dd");
-            string gioitinh = cbNam.Checked ? "Nam" : "Nữ";
-            sql = @"
-                      INSERT INTO NhanVien
-                        (MaNV, TenNV, GioiTinh, MaCV, NgaySinh, DienThoai, DiaChi)
-                      VALUES
-                        (@MaNV, @TenNV, @GioiTinh, @MaCV, @NgaySinh, @DienThoai, @DiaChi)
-                    ";
 
-            using (var cmd = new SqlCommand(sql, Functions.conn))
+            if (Functions.CheckKey("SELECT MaNV FROM NhanVien WHERE MaNV=N'" + txtManv.Text.Trim() + "'"))
             {
-                cmd.Parameters.AddWithValue("@MaNV", txtManv.Text.Trim());
-                cmd.Parameters.AddWithValue("@TenNV", txtTennv.Text.Trim());
-                cmd.Parameters.AddWithValue("@GioiTinh", gioitinh);
-                cmd.Parameters.AddWithValue("@MaCV", cboMacv.SelectedValue.ToString());
-                cmd.Parameters.AddWithValue("@NgaySinh", DateTime.ParseExact(mskNgaysinh.Text, "dd/MM/yyyy", null));
-                cmd.Parameters.AddWithValue("@DienThoai", mskDienthoai.Text.Trim());
-                cmd.Parameters.AddWithValue("@DiaChi", txtDiachi.Text.Trim());
-
-                cmd.ExecuteNonQuery();
+                MessageBox.Show("Mã nhân viên này đã có, bạn phải nhập mã khác", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtManv.Focus();
+                txtManv.Text = "";
+                return;
             }
+
+            string gioitinh = cbNam.Checked ? "Nam" : "Nữ";
+            string ngaysinh = Functions.ConvertDateTime(mskNgaysinh.Text);
+            string dienthoai = mskDienthoai.Text.Trim();
+            string diachi = txtDiachi.Text.Trim().Replace("'", "''");
+            string macv = cboMacv.SelectedValue.ToString();
+
+            sql = "INSERT INTO NhanVien(MaNV, TenNV, GioiTinh, NgaySinh, DienThoai, DiaChi, MaCV) VALUES(" +
+                "N'" + txtManv.Text.Trim() + "', " +
+                "N'" + txtTennv.Text.Trim() + "', " +
+                "N'" + gioitinh + "', " +
+                "'" + ngaysinh + "', " +
+                "N'" + dienthoai + "', " +
+                "N'" + diachi + "', " +
+                "N'" + macv + "'" +
+                ")";
+
             Functions.RunSql(sql);
+
             Load_dataGridViewNV();
             ResetValues();
             btnXoa.Enabled = true;

@@ -343,22 +343,10 @@ namespace quanlymypham.Forms
 
         private void btnXoaHD_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Bạn có muốn xoá hoá đơn này không","Thông báo",MessageBoxButtons.OKCancel, MessageBoxIcon.Question)== DialogResult.OK)
-            {
-                string sql = "DELETE FROM HoaDonBan WHERE SoHDB = N'" + txtsoHDB.Text + "'";
-                string sqlchitiet = "DELETE FROM ChiTietHoaDonBan WHERE SoHDB= N'" + txtsoHDB.Text + "'";
-                Functions.RunSql(sqlchitiet);
-                Functions.RunSql(sql);
-                foreach (DataRow row in DStam.Rows)
-                {
-                    string masp = row["Mã sản phẩm"].ToString();
-                    int soluongsp = Convert.ToInt32(row["Số lượng"]);
-                    sql = @"UPDATE HangHoa SET SoLuong = SoLuong +  " + soluongsp + " WHERE MaHang = N'" + masp + "'";
-                    Functions.RunSql(sql);
-                }
+            
                 Load_DStam();
                 ResetValuesSP();
-            }    
+               
         }
         
 

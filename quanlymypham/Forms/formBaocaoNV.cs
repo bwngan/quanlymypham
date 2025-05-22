@@ -20,7 +20,7 @@ namespace quanlymypham.Forms
 {
     public partial class formBaocaoNV : Form
     {
-        DataTable tblNhanVien, tblNVDoanhThuCao;
+        DataTable tblNhanVien;
         public formBaocaoNV()
         {
             InitializeComponent();
