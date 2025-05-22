@@ -29,6 +29,14 @@ namespace quanlymypham.Forms
         public GD_Chinh()
         {
             InitializeComponent();
+            panelContent.Resize += PanelContent_Resize;
+        }
+        private void PanelContent_Resize(object sender, EventArgs e)
+        {
+            if (panelContent.Controls.Count > 0 && panelContent.Controls[0] is Form f)
+            {
+                f.Size = panelContent.ClientSize;
+            }
         }
         bool QuanlychungExpand = false;
         private void QuanlychungTransition_Tick(object sender, EventArgs e)
@@ -193,13 +201,21 @@ namespace quanlymypham.Forms
         {
             if (nhanvien == null || nhanvien.IsDisposed)
             {
+                panelContent.Controls.Clear();
                 nhanvien = new formNV();
                 nhanvien.TopLevel = false;
                 nhanvien.FormBorderStyle = FormBorderStyle.None;
                 nhanvien.Dock = DockStyle.Fill;
-                panelContent.Controls.Clear();
-                panelContent.Controls.Add(nhanvien);
+                nhanvien.AutoSize = false;
                 nhanvien.Size = panelContent.ClientSize;
+
+                panelContent.Controls.Add(nhanvien);
+
+                // Dòng này rất quan trọng nếu form con bị nhỏ
+                nhanvien.Size = panelContent.ClientSize;
+                nhanvien.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
+
                 nhanvien.Show();
             }
             else

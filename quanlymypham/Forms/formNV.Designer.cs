@@ -60,7 +60,7 @@
             // 
             // btnDong
             // 
-            this.btnDong.Location = new System.Drawing.Point(1038, 602);
+            this.btnDong.Location = new System.Drawing.Point(1124, 602);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(75, 23);
             this.btnDong.TabIndex = 32;
@@ -313,7 +313,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1334, 641);
+            this.ClientSize = new System.Drawing.Size(1414, 716);
             this.Controls.Add(this.btnDong);
             this.Controls.Add(this.btnBoqua);
             this.Controls.Add(this.btnHienthi);
